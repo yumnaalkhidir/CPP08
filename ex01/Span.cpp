@@ -4,56 +4,60 @@
 #include <cstddef>
 #include <cstdlib>
 #include <climits>
-#include <random>
 #include <vector>
 
 Span::Span()
 {
-    con_size = 0;
+    _size = 0;
 }
 
-Span::Span(unsigned int N) : con_size(N)
+Span::Span(unsigned int N) : _size(N)
 {
-    numbers.reserve(con_size);
-    std::cout << "Numbers size: " << numbers.size() << std::endl;
-
+    _numbers.reserve(_size);
 }
 
-Span::Span(const Span& copy)
+Span::Span(const Span &copy)
 {
-    this->con_size = copy.con_size;
-    this->numbers = copy.numbers;
+    this->_size = copy._size;
+    this->_numbers = copy._numbers;
 }
 
-Span& Span::operator=(const Span& other)
+Span &Span::operator=(const Span &other)
 {
     if (this != &other)
     {
-        this->con_size = other.con_size;
-        this->numbers = other.numbers;
+        this->_size = other._size;
+        this->_numbers = other._numbers;
     }
     return (*this);
 }
 
 Span::~Span()
 {
-
 }
 
 void Span::addNumber(int add)
 {
-    if (numbers.size() >= con_size)
+    if (_numbers.size() >= _size)
         throw std::exception();
-    else
-        numbers.push_back(add);
+    _numbers.push_back(add);
+}
+
+void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    while (begin != end)
+    {
+        addNumber(*begin);
+        ++begin;
+    }
 }
 
 int Span::shortestSpan() const
 {
-    if (numbers.size() < 2)
+    if (_numbers.size() < 2)
         throw std::exception();
 
-    std::vector<int> sorted = numbers;
+    std::vector<int> sorted = _numbers;
     std::sort(sorted.begin(), sorted.end());
     int shortest = INT_MAX;
     for (size_t i = 0; i < sorted.size() - 1; i++)
@@ -68,19 +72,10 @@ int Span::shortestSpan() const
 
 int Span::longestSpan() const
 {
-    if (numbers.empty() || numbers.size() == 1)
+    if (_numbers.empty() || _numbers.size() == 1)
         throw std::exception();
-    std::vector<int> sorted = numbers;
+    std::vector<int> sorted = _numbers;
     std::sort(sorted.begin(), sorted.end());
     return (sorted.back() - sorted.front());
 }
 
-void Span::printspan() const
-{
-    std::cout << "Numbers size: " << numbers.size() << std::endl;
-    for (auto it = numbers.begin(); it != numbers.end(); it++)
-    {
-        std::cout << *it << " ";
-    }
-    std::cout <<std::endl;
-}

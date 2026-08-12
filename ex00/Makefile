@@ -1,6 +1,6 @@
 CXX			:= c++
-CXXFLAGS	:= -Wall -Werror -Wextra
-NAME		:= easyfine
+CXXFLAGS	:= -Wall -Werror -Wextra -std=c++98
+NAME		:= easyfind
 FILES		:= main.cpp
 OBJ			:= $(FILES:.cpp=.o)
 HEADER		:=  easyfind.hpp
@@ -8,7 +8,7 @@ HEADER		:=  easyfind.hpp
 
 all: $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(HEADER)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
