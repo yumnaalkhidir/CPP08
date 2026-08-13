@@ -1,14 +1,14 @@
 CXX			:= c++
-CXXFLAGS	:= -Wall -Werror -Wextra
-NAME		:= span
-FILES		:= main.cpp Span.cpp
+CXXFLAGS	:= -Wall -Werror -Wextra -std=c++98
+NAME		:= stack_iter
+FILES		:= main.cpp
 OBJ			:= $(FILES:.cpp=.o)
-HEADER		:=  Span.hpp
+HEADER		:= MutantStack.hpp
 
 
 all: $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(HEADER)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
