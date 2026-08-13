@@ -11,7 +11,7 @@ class MutantStack : public std::stack<T>
         MutantStack<T>& operator=(const MutantStack& other);
         ~MutantStack();
 
-        typedef typename std::stack<T>::container_type iterator;
+        typedef typename std::stack<T>::container_type::iterator iterator;
 
         iterator begin();
         iterator end();
@@ -50,8 +50,5 @@ typename MutantStack<T>::iterator MutantStack<T>::end()
 {
     return this->c.end();
 }
-
-
-
 
 #endif
