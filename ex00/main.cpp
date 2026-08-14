@@ -14,14 +14,25 @@ int main(void)
     vec.push_back(30);
     vec.push_back(-40);
     vec.push_back(50);
-    std::cout << "Find 10: " << easyfind(vec, 10) << std::endl;
-    std::cout << "Find 30: " << easyfind(vec, -20) << std::endl;
-    std::cout << "Find 50: " << easyfind(vec, 50) << std::endl;
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+        std::cout << *it << " ";
+    
+    std::cout << std::endl;
+    
+    std::cout << "Find 10: " << *easyfind(vec, 10) << std::endl;
+    std::cout << "Find -20: " << *easyfind(vec, -20) << std::endl;
+    std::vector<int>::iterator pos =  easyfind(vec, 50);
+    vec.insert(pos, 1000);
 
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+        std::cout << *it << " ";
+    
+    std::cout << std::endl;
+    
     std::cout << "\n---- Value Not Found ----" << std::endl;
     try
     {
-        std::cout << easyfind(vec, 60) << std::endl;
+        std::cout << "Find: 60: " << *easyfind(vec, 60) << std::endl;
     }
     catch (std::exception &e)
     {
@@ -33,11 +44,20 @@ int main(void)
     std::vector<int> duplicates;
     duplicates.push_back(10);
     duplicates.push_back(20);
-    duplicates.push_back(10);
     duplicates.push_back(30);
     duplicates.push_back(10);
+    std::cout << "Before: ";
+    for (std::vector<int>::iterator it = duplicates.begin(); it != duplicates.end(); it++)
+        std::cout << *it << " ";
+    std::cout <<std::endl;
+    
+    std::vector<int>::iterator dup_val = easyfind(duplicates, 10);
+    duplicates.erase(dup_val);
 
-    std::cout << "Find 10: " << easyfind(duplicates, 10) << std::endl;
+    std::cout << "After: ";
+    for (std::vector<int>::iterator it = duplicates.begin(); it != duplicates.end(); it++)
+        std::cout << *it << " ";
+    std::cout <<std::endl;
 
 
     std::cout << "\n---- Empty Container ----" << std::endl;
@@ -45,7 +65,7 @@ int main(void)
     std::vector<int> empty;
     try
     {
-        std::cout << easyfind(empty, 10) << std::endl;
+        std::cout << "Find 10: " << *easyfind(empty, 10) << std::endl;
     }
     catch (std::exception &e)
     {
@@ -55,38 +75,34 @@ int main(void)
 
     std::cout << "\n---- List ----" << std::endl;
 
-    std::list<int> list;
+    std::list<int> lst;
 
-    list.push_back(100);
-    list.push_back(200);
-    list.push_back(300);
+    lst.push_back(100);
+    lst.push_back(200);
+    lst.push_back(300);
+    
+    std::cout << "Before: ";
+    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
 
-    std::cout << "Find 200: " << easyfind(list, 200) << std::endl;
+    std::cout << "Find 200: " << *easyfind(lst, 200) << std::endl;
+
+    std::list<int>::iterator lst_pos = easyfind(lst, 100);
+    lst.insert(lst_pos, 5);
+
+    std::cout << "After: ";
+    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+
     try
     {
-        std::cout << easyfind(list, 500) << std::endl;
+        std::cout <<"Find 500: " << *easyfind(lst, 500) << std::endl;
     }
     catch (std::exception &e)
     {
         std::cout << "Value not found in list" << std::endl;
     }
 
-    std::cout << "\n---- Deque ----" << std::endl;
-    std::deque<int> deq;
-
-    deq.push_back(10);
-    deq.push_back(20);
-    deq.push_back(30);
-    deq.push_back(40);
-
-    std::cout <<"Find 30: " << easyfind(deq, 30) << std::endl;
-    try
-    {
-        std::cout << easyfind(deq, 100) << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Value not found" << std::endl;
-    }
-    return 0;
 }
