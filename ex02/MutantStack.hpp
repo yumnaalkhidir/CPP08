@@ -18,8 +18,7 @@ class MutantStack : public std::stack<T>
         iterator end();
         const_iterator begin() const;
         const_iterator end() const;
-        void clear();
-
+    
 };
 
 template<typename T>

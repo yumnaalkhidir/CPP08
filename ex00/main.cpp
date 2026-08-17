@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <list>
-#include <deque>
 
 int main(void)
 {

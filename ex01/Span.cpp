@@ -1,10 +1,10 @@
 #include "Span.hpp"
-#include <algorithm>
 #include <climits>
 #include <cstddef>
+#include <exception>
 #include <cstdlib>
-#include <climits>
-#include <vector>
+#include <iostream>
+#include <algorithm>
 
 Span::Span()
 {
