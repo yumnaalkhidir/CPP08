@@ -33,7 +33,6 @@ int main()
     }
     std::cout << std::endl;
 
-
     std::cout << "\n---- Modify Through Iterator ----" << std::endl;
 
     MutantStack<int>::iterator it = mstack.begin();
@@ -46,7 +45,6 @@ int main()
     }
     std::cout << std::endl;
 
-
     std::cout << "\n---- Const Iterator ----" << std::endl;
 
     const MutantStack<int> constStack(mstack);
@@ -57,7 +55,6 @@ int main()
         std::cout << *cit << " ";
     }
     std::cout << std::endl;
-
 
     std::cout << "\n---- Copy Constructor ----" << std::endl;
 
@@ -81,7 +78,6 @@ int main()
         std::cout << *iter << " ";
     }
     std::cout << std::endl;
-
 
     std::cout << "\n---- Assignment Operator ----" << std::endl;
 
@@ -107,7 +103,6 @@ int main()
         std::cout << *iter << " ";
     }
     std::cout << std::endl;        
-
 
     std::cout << "\n---- Emptying a Stack ----" << std::endl;
     
